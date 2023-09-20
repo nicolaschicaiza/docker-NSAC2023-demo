@@ -1,4 +1,4 @@
-FROM python:3.11.5-alpine3.18
+FROM python:3.10.12-alpine3.18
 
 WORKDIR /app
 
@@ -11,5 +11,7 @@ COPY python_app/requirements.txt ./
 RUN pip install -r requirements.txt 
 
 COPY python_app/ ./
+
+RUN pip install tensorflow
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
