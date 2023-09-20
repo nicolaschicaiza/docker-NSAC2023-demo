@@ -2,26 +2,29 @@ version: '3'
 
 services:
   python:
-    build:
-      context: ./docker_files/python
+    # Configuración del servicio del proyecto python 
+    build: 
+      context: .
+      dockerfile: docker_files/python/Dockerfile
+    container_name: python-container
     volumes:
       - ./python_app:/app
     ports:
       - "8000:8000"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
 
-  react:
-    build:
-      context: ./docker_files/react
-    volumes:
-      - ./react_app:/app
-    ports:
-      - "3000:3000"
+  # react:
+  #   build:
+  #     context: ./docker_files/react
+  #   volumes:
+  #     - ./react_app:/app
+  #   ports:
+  #     - "3000:3000"
 
-  db:
-    image: postgres:latest
-    environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=demo
+  # db:
+  #   image: postgres:latest
+  #   environment:
+  #     - POSTGRES_USER=root
+  #     - POSTGRES_PASSWORD=secret
+  #     - POSTGRES_DB=demo
